@@ -9,6 +9,12 @@ public class Franchise {
     private String name;
     private List<Branch> branches;
 
+    public Franchise(String id, String name, List<Branch> branches) {
+        this.id = id;
+        this.name = name;
+        this.branches = branches;
+    }
+
     public Franchise(String name, List<Branch> branches) {
         this.id = UUID.randomUUID().toString();
         this.name = name;

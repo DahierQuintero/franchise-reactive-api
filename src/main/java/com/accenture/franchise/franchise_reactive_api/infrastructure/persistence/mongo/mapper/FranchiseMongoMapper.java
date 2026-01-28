@@ -7,6 +7,7 @@ import com.accenture.franchise.franchise_reactive_api.infrastructure.persistence
 import com.accenture.franchise.franchise_reactive_api.infrastructure.persistence.mongo.document.FranchiseDocument;
 import com.accenture.franchise.franchise_reactive_api.infrastructure.persistence.mongo.document.ProductDocument;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class FranchiseMongoMapper {
@@ -27,25 +28,31 @@ public class FranchiseMongoMapper {
                                 pd.setName(product.getName());
                                 pd.setStock(product.getStock());
                                 return pd;
-                            }).collect(Collectors.toList())
+                            }).collect(Collectors.toCollection(ArrayList::new))
                     );
                     return bd;
-                }).collect(Collectors.toList())
+                }).collect(Collectors.toCollection(ArrayList::new))
         );
         return doc;
     }
 
     public static Franchise toDomain(FranchiseDocument doc) {
         return new Franchise(
+                doc.getId(),
                 doc.getName(),
                 doc.getBranches().stream().map(b ->
                     new Branch(
+                            b.getId(),
                             b.getName(),
                             b.getProducts().stream().map(p ->
-                                    new Product(p.getName(), p.getStock())
-                            ).collect(Collectors.toList())
+                                    new Product(
+                                            p.getId(),
+                                            p.getName(),
+                                            p.getStock()
+                                    )
+                            ).collect(Collectors.toCollection(ArrayList::new))
                     )
-                ).collect(Collectors.toList())
+                ).collect(Collectors.toCollection(ArrayList::new))
         );
     }
 }

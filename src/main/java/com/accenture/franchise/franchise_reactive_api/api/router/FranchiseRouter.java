@@ -14,6 +14,9 @@ public class FranchiseRouter {
 
     @Bean
     public RouterFunction<ServerResponse> franchiseRoutes(FranchiseHandler handler) {
-        return route(POST("/franchises"), handler::createFranchise);
+        return route(POST("/franchises"), handler::createFranchise)
+                .andRoute(POST("/franchises/{franchiseId}/branches"), handler::addBranch);
     }
+
+
 }
