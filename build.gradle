@@ -10,7 +10,7 @@ description = 'Reactive Backend API built with Spring WebFlux following Clean Ar
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 
