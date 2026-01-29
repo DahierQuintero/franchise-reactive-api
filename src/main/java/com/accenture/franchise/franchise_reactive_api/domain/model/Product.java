@@ -1,27 +1,13 @@
 package com.accenture.franchise.franchise_reactive_api.domain.model;
 
-import java.util.UUID;
-
 public class Product {
 
-    private final String id;
     private String name;
     private int stock;
 
-    public Product(String id, String name, int stock) {
-        this.id = id;
-        this.name = name;
-        this.stock = stock;
-    }
-
     public Product(String name, int stock) {
-        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.stock = stock;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getName() {
@@ -32,11 +18,11 @@ public class Product {
         return stock;
     }
 
-    public void updateStock(int stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 
-    public void updateName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

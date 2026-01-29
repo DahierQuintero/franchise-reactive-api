@@ -24,7 +24,6 @@ public class FranchiseMongoMapper {
                     bd.setProducts(
                             branch.getProducts().stream().map(product -> {
                                 ProductDocument pd = new ProductDocument();
-                                pd.setId(product.getId());
                                 pd.setName(product.getName());
                                 pd.setStock(product.getStock());
                                 return pd;
@@ -46,7 +45,6 @@ public class FranchiseMongoMapper {
                             b.getName(),
                             b.getProducts().stream().map(p ->
                                     new Product(
-                                            p.getId(),
                                             p.getName(),
                                             p.getStock()
                                     )
